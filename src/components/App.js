@@ -29,7 +29,7 @@ export default class App extends React.Component {
     const monthObj = ZodiacArray.find(month => {
       return Object.keys(month)[0] === ourMonth
     })
-    if (monthObj[ourMonth] < ourDate) {
+    if (monthObj[ourMonth] > ourDate) {
       this.setState({zodiac: monthObj.sign[0]}) 
     } else {
       this.setState({zodiac: monthObj.sign[1]}) 
