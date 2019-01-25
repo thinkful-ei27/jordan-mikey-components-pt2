@@ -9,9 +9,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      month: 0,
+      month: '',
       date: 0,
-      zodiac: 'Your Zodiac here'
+      response: 'Get your Zodiac!'
     }
   }
 
@@ -24,18 +24,20 @@ export default class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const ourMonth = this.state.month;
-    const ourDate = this.state.date;
-    const monthObj = ZodiacArray.find(month => {
-      return Object.keys(month)[0] === ourMonth
+    const monthObj = ZodiacArray.find(obj => {
+      return obj.month === this.state.month.toLowerCase()
     })
-    if (monthObj[ourMonth] > ourDate) {
-      this.setState({zodiac: monthObj.sign[0]}) 
+
+    if (!monthObj) {
+      this.setState({ response: 'There seems to be a problems with the `month` you entered' })
+    }
+    else if (monthObj && monthObj.date > this.state.date) {
+      this.setState({ response: monthObj.sign[0] })
     } else {
-      this.setState({zodiac: monthObj.sign[1]}) 
+      this.setState({ response: monthObj.sign[1] })
     }
   }
-  
+
   render() {
     return (
       <div className="horoscope" >
@@ -45,7 +47,7 @@ export default class App extends React.Component {
           <DayInput onChange={date => this.setDate(date)} />
           <SubmitButton onSubmit={(e) => this.handleSubmit(e)} />
         </form>
-        <Output value={this.state.zodiac} />
+        <Output value={this.state.response} />
       </div>
     )
   }

@@ -4,8 +4,8 @@ export default function DayInput(props){
 
   return(
     <div>
-      <label>Enter two digit day</label>
-  <input type="text" placeholder="28" onChange={e=>props.onChange(e.target.value)}></input>
+      <label>Enter a date</label>
+  <input type="number" min="1" max="31" placeholder="15" onChange={e=>props.onChange(e.target.value)}></input>
       </div>
   )
 }

@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Output(props){
-
   
   return (
     <div>
@@ -9,7 +8,4 @@ export default function Output(props){
     </div>
   )
 
-
 }
-
-Output.defaultProps = { value: "Get your Zodiak sign!" }
